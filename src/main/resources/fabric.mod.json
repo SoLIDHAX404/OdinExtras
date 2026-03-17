@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "odinextras",
+  "version": "${version}",
+  "name": "OdinExtras",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "BSD-3-Clause",
+  "icon": "assets/odinextras/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "com.solidhax.odinextras.OdinExtras"
+      }
+    ]
+  },
+  "mixins": [
+    "odinextras.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": "~${minecraft_version}",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
+    "odin": "*"
+  }
+}
