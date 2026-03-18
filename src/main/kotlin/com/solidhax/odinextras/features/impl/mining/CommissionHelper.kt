@@ -17,6 +17,7 @@ import net.minecraft.world.item.Items
 import tech.thatgravyboat.skyblockapi.api.area.mining.Commission
 import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionArea
 import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionsAPI
+import tech.thatgravyboat.skyblockapi.api.profile.PetsAPI
 
 object CommissionHelper : Module(
     name = "Commission Helper",
@@ -46,10 +47,10 @@ object CommissionHelper : Module(
         Commission("Royal Mines Titanium", CommissionArea.DWARVEN_MINES, 1.0f),
         Commission("Goblin Slayer", CommissionArea.DWARVEN_MINES, 0.13f)
     )
-    private var activeCommissions: List<Commission> = mutableListOf()
+    private var activeCommissions: List<Commission> = emptyList()
 
     private val hud by HUD(name, "Active Commissions Overlay", false) { example ->
-        activeCommissions = if(example) exampleCommissions else CommissionsAPI.commissions.filter { it.area == CommissionArea.Companion.currentArea }
+        activeCommissions = if(example) exampleCommissions else CommissionsAPI.commissions.filter { it.area == CommissionArea.currentArea }
 
         var width = 0
         var height = activeCommissions.size * mc.font.lineHeight
