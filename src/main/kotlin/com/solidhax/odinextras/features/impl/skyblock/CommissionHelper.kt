@@ -39,8 +39,9 @@ object CommissionHelper : Module(
         var height = activeCommissions.size * mc.font.lineHeight
         activeCommissions.forEachIndexed { index, commission ->
             var commissionProgressPercentage: Double = commission.progress * 100.0
+            var commissionProgressText: String = if(commissionProgressPercentage == 100.0) "DONE" else "${commissionProgressPercentage.toFixed(1)}%"
             var commissionStatusColor: Color = progressToColor(commissionProgressPercentage)
-            val (textWidth, textHeight) = textDim("${commission.name}: ${commissionProgressPercentage.toFixed(1)}%", 0, 0 + (index * mc.font.lineHeight), commissionStatusColor)
+            val (textWidth, textHeight) = textDim("${commission.name}: $commissionProgressText", 0, 0 + (index * mc.font.lineHeight), commissionStatusColor)
             width = maxOf(width, textWidth)
         }
 
@@ -53,7 +54,7 @@ object CommissionHelper : Module(
 
             if(!LocationUtils.isInSkyblock) return@on
             if(!LocationUtils.isCurrentArea(Island.DwarvenMines, Island.CrystalHollows, Island.Mineshaft)) return@on
-            if(screen.title.equals("Commissions") || slot.item.item != Items.WRITABLE_BOOK) return@on
+            if(!screen.title.string.contains("Commissions") || slot.item.item != Items.WRITABLE_BOOK) return@on
             if(!isCompletedCommission(slot.item)) return@on
 
             guiGraphics.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, highlightColor.rgba)
@@ -73,9 +74,9 @@ object CommissionHelper : Module(
 
     private fun progressToColor(progress: Double): Color {
         return when {
-            progress >= 75f -> Colors.MINECRAFT_GREEN
-            progress >= 50f -> Colors.MINECRAFT_YELLOW
-            progress >= 25f -> Colors.MINECRAFT_GOLD
+            progress >= 75.0 -> Colors.MINECRAFT_GREEN
+            progress >= 50.0 -> Colors.MINECRAFT_YELLOW
+            progress >= 25.0 -> Colors.MINECRAFT_GOLD
             else -> Colors.MINECRAFT_RED
         }
     }
