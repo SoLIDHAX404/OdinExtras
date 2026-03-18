@@ -7,6 +7,7 @@ import com.solidhax.odinextras.events.EventDispatcher
 import com.solidhax.odinextras.features.impl.floor7.DragonWaypoints
 import com.solidhax.odinextras.features.impl.render.HUD
 import com.solidhax.odinextras.features.impl.skyblock.AuctionHouseHelper
+import com.solidhax.odinextras.features.impl.skyblock.CommissionHelper
 import com.solidhax.odinextras.features.impl.skyblock.CorpseFinder
 import com.solidhax.odinextras.features.impl.skyblock.TruncateDamage
 import com.solidhax.odinextras.features.impl.skyblock.ItemLore
@@ -26,6 +27,6 @@ object OdinExtras : ClientModInitializer {
         listOf(this, EventDispatcher).forEach { EventBus.subscribe(it) }
 
         ModuleManager.registerModules(ModuleConfig("OdinExtras.json"), RarityDisplay, ItemLore, HUD, DragonWaypoints,
-            CorpseFinder, Trapper, TruncateDamage, AuctionHouseHelper, WorldScanner)
+            CorpseFinder, Trapper, TruncateDamage, AuctionHouseHelper, WorldScanner, CommissionHelper)
     }
 }
