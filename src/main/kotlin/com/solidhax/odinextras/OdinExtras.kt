@@ -23,6 +23,6 @@ object OdinExtras : ClientModInitializer {
         listOf(this, EventDispatcher).forEach { EventBus.subscribe(it) }
 
         ModuleManager.registerModules(ModuleConfig("OdinExtras.json"), RarityDisplay, ItemLore, HUD, DragonWaypoints,
-            CorpseFinder, Trapper, TruncateDamage, AuctionHouseHelper, WorldScanner, CommissionHelper)
+            CorpseFinder, Trapper, TruncateDamage, AuctionHouseHelper, WorldScanner, CommissionHelper, FishingHelper)
     }
 }
