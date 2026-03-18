@@ -44,7 +44,7 @@ object AuctionHouseHelper : Module(
         }
 
         on<GuiEvent.DrawSlot> {
-            if (screen.title.string != "Manage Auctions" || slot.item == null) return@on
+            if (!enabled || screen.title.string != "Manage Auctions" || slot.item == null) return@on
 
             val slotIndex = slot.index
             if (slotIndex in items) return@on

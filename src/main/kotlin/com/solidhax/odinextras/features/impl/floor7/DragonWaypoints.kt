@@ -43,6 +43,7 @@ object DragonWaypoints : Module(name = "Dragon Waypoints", description = "Shows 
 
     init {
         on<RenderEvent.Extract> {
+            if(!enabled) return@on
             if(DungeonUtils.getF7Phase() != M7Phases.P5) return@on
 
             val priorityDragon = WitherDragons.priorityDragon

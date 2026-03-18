@@ -66,6 +66,8 @@ object Trapper : Module(
     init {
 
         on<ChatPacketEvent> {
+            if(!enabled) return@on
+
             val trapperStart = trapperStartRegex.find(value) != null
             val trapperOptions = trapperClickOptionPattern.find(value) != null
 
@@ -107,6 +109,8 @@ object Trapper : Module(
         }
 
         on<TickEvent.Server> {
+            if(!enabled) return@on
+
             if(trapperTimer > 0) trapperTimer--
 
             if (trapperPromptTimer > 0) {

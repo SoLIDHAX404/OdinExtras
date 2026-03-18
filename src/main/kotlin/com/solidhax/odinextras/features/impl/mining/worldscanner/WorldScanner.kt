@@ -32,6 +32,7 @@ object WorldScanner : Module(
 
     init {
         on<ClientLoadChunkEvent> {
+            if(!enabled) return@on
             if(LocationUtils.currentArea != Island.CrystalHollows) return@on
 
             if(Pair(chunk.pos.x, chunk.pos.z) !in scannedChunks) scope.launch { scanChunk(chunk) }
@@ -46,6 +47,7 @@ object WorldScanner : Module(
         }
 
         on<RenderEvent.Extract> {
+            if(!enabled) return@on
             if(LocationUtils.currentArea != Island.CrystalHollows) return@on
 
             for(grotto in grottos) {

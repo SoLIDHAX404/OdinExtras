@@ -50,6 +50,7 @@ object ItemLore : Module(
         }
 
         on<RenderTooltipEvent> {
+            if(!enabled) return@on
             val screen: Screen = mc.screen ?: return@on
             if(!(screen is InventoryScreen || screen is ContainerScreen)) return@on
 

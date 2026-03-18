@@ -30,6 +30,8 @@ object RarityDisplay : Module(
 
     init {
         on<GuiEvent.DrawSlot> {
+            if(!enabled) return@on
+
             val itemInSlot = slot.item
             if (itemInSlot.isEmpty) return@on
             val itemRarity = getSkyblockRarity(itemInSlot.loreString) ?: return@on
@@ -41,6 +43,8 @@ object RarityDisplay : Module(
         }
 
         on<PlayerGuiEvent.DrawSlot> {
+            if(!enabled) return@on
+
             val itemRarity = getSkyblockRarity(item.loreString) ?: return@on
 
             val itemRarityBackground = getSelectedItemBackgroundTexture() ?: return@on;

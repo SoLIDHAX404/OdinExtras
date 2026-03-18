@@ -49,7 +49,6 @@ object CommissionHelper : Module(
     private var activeCommissions: List<Commission> = mutableListOf()
 
     private val hud by HUD(name, "Active Commissions Overlay", false) { example ->
-
         activeCommissions = if(example) exampleCommissions else CommissionsAPI.commissions.filter { it.area == CommissionArea.Companion.currentArea }
 
         var width = 0
@@ -67,7 +66,7 @@ object CommissionHelper : Module(
 
     init {
         on<GuiEvent.DrawSlot> {
-            if(!highlightCompletedCommissions) return@on
+            if(!enabled || !highlightCompletedCommissions) return@on
 
             if(!LocationUtils.isInSkyblock) return@on
             if(!LocationUtils.isCurrentArea(Island.DwarvenMines, Island.CrystalHollows, Island.Mineshaft)) return@on
@@ -78,7 +77,7 @@ object CommissionHelper : Module(
         }
 
         on<ChatPacketEvent> {
-            if(!completedCommissionAlert) return@on
+            if(!enabled || !completedCommissionAlert) return@on
 
             if(!LocationUtils.isInSkyblock) return@on
             if(!LocationUtils.isCurrentArea(Island.DwarvenMines, Island.CrystalHollows, Island.Mineshaft)) return@on

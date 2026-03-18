@@ -24,6 +24,7 @@ object FishingHelper : Module(
 
     init {
         onReceive<ClientboundAddEntityPacket> {
+            if(!enabled) return@onReceive
             if(type != EntityType.FISHING_BOBBER) return@onReceive
 
             schedule(1) {
@@ -35,6 +36,7 @@ object FishingHelper : Module(
         }
 
         onReceive<ClientboundRemoveEntitiesPacket> {
+            if(!enabled) return@onReceive
             if(fishingHookEntity == null) return@onReceive
             if(!entityIds.contains(fishingHookEntity!!.id)) return@onReceive
 
@@ -43,13 +45,14 @@ object FishingHelper : Module(
         }
 
         on<TickEvent.Server> {
+            if(!enabled) return@on
             if(fishingHookEntity == null) return@on
 
             fishingHookLifetimeTicks++
         }
 
         on<RenderEvent.Extract> {
-            if(!showFishingHookLifetime) return@on
+            if(!enabled || !showFishingHookLifetime) return@on
             if(fishingHookEntity == null) return@on
 
             val fishingHookLifetimeSeconds: Double = fishingHookLifetimeTicks / 20.0
