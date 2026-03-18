@@ -1,4 +1,4 @@
-package com.solidhax.odinextras.features.impl.skyblock.worldscanner
+package com.solidhax.odinextras.features.impl.mining.worldscanner
 
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks

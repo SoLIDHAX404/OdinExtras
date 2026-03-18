@@ -4,7 +4,6 @@ import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
-import com.odtheking.odin.features.impl.floor7.DragonPriority
 import com.odtheking.odin.features.impl.floor7.WitherDragonState
 import com.odtheking.odin.features.impl.floor7.WitherDragons
 import com.odtheking.odin.utils.Color
@@ -18,7 +17,6 @@ import com.odtheking.odin.utils.skyblock.dungeon.DungeonUtils
 import com.odtheking.odin.utils.skyblock.dungeon.M7Phases
 import net.minecraft.core.BlockPos
 import net.minecraft.world.phys.AABB
-import net.minecraft.world.phys.Vec3
 
 object DragonWaypoints : Module(name = "Dragon Waypoints", description = "Shows waypoints on where to stand for arrow stack/debuff.") {
 

@@ -4,7 +4,6 @@ import com.odtheking.odin.OdinMod.mc
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.utils.Color
 import com.odtheking.odin.utils.addVec
-import com.odtheking.odin.utils.render.drawBeaconBeam
 import com.odtheking.odin.utils.render.drawText
 import com.odtheking.odin.utils.render.drawWireFrameBox
 import net.minecraft.core.BlockPos

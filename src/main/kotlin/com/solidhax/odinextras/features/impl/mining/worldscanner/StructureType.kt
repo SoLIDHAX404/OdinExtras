@@ -1,4 +1,4 @@
-package com.solidhax.odinextras.features.impl.skyblock.worldscanner
+package com.solidhax.odinextras.features.impl.mining.worldscanner
 
 enum class StructureType {
     FAIRY_GROTTO,

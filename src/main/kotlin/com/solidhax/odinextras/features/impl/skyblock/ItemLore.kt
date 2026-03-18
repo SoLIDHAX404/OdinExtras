@@ -19,7 +19,6 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Style
 import net.minecraft.util.FormattedCharSequence
-import kotlin.collections.mutableMapOf
 import kotlin.jvm.optionals.getOrNull
 
 object ItemLore : Module(

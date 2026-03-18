@@ -1,12 +1,12 @@
-package com.solidhax.odinextras.features.impl.skyblock
+package com.solidhax.odinextras.features.impl.mining
 
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.events.TickEvent
 import com.odtheking.odin.events.WorldEvent
 import com.odtheking.odin.events.core.on
+import com.odtheking.odin.features.Category
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.Color
-import com.odtheking.odin.utils.render.drawCustomBeacon
 import com.odtheking.odin.utils.render.drawWireFrameBox
 import com.odtheking.odin.utils.skyblock.Island
 import com.odtheking.odin.utils.skyblock.LocationUtils
@@ -24,9 +24,9 @@ enum class CorpseType {
 
 object CorpseFinder : Module(
     name = "Corpse Finder",
-    description = "Finds and pings the location of corpses in a mineshaft."
+    description = "Finds and pings the location of corpses in a mineshaft.",
+    category = Category.custom("Mining")
 ) {
-
     private val corpses = mutableMapOf<CorpseType, MutableSet<Entity>>()
 
     init {

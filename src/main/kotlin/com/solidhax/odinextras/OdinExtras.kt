@@ -5,15 +5,11 @@ import com.odtheking.odin.events.core.EventBus
 import com.odtheking.odin.features.ModuleManager
 import com.solidhax.odinextras.events.EventDispatcher
 import com.solidhax.odinextras.features.impl.floor7.DragonWaypoints
+import com.solidhax.odinextras.features.impl.mining.CommissionHelper
+import com.solidhax.odinextras.features.impl.mining.CorpseFinder
+import com.solidhax.odinextras.features.impl.mining.worldscanner.WorldScanner
 import com.solidhax.odinextras.features.impl.render.HUD
-import com.solidhax.odinextras.features.impl.skyblock.AuctionHouseHelper
-import com.solidhax.odinextras.features.impl.skyblock.CommissionHelper
-import com.solidhax.odinextras.features.impl.skyblock.CorpseFinder
-import com.solidhax.odinextras.features.impl.skyblock.TruncateDamage
-import com.solidhax.odinextras.features.impl.skyblock.ItemLore
-import com.solidhax.odinextras.features.impl.skyblock.RarityDisplay
-import com.solidhax.odinextras.features.impl.skyblock.Trapper
-import com.solidhax.odinextras.features.impl.skyblock.worldscanner.WorldScanner
+import com.solidhax.odinextras.features.impl.skyblock.*
 import net.fabricmc.api.ClientModInitializer
 
 object OdinExtras : ClientModInitializer {

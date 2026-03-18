@@ -1,4 +1,4 @@
-package com.solidhax.odinextras.features.impl.skyblock.worldscanner
+package com.solidhax.odinextras.features.impl.mining.worldscanner
 
 import com.google.common.base.Predicate
 import net.minecraft.core.BlockPos

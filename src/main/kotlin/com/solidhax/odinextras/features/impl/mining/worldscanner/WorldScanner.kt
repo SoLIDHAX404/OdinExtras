@@ -1,13 +1,12 @@
-package com.solidhax.odinextras.features.impl.skyblock.worldscanner
+package com.solidhax.odinextras.features.impl.mining.worldscanner
 
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.events.WorldEvent
 import com.odtheking.odin.events.core.on
+import com.odtheking.odin.features.Category
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.modMessage
-import com.odtheking.odin.utils.render.drawCustomBeacon
-import com.odtheking.odin.utils.render.drawText
 import com.odtheking.odin.utils.skyblock.Island
 import com.odtheking.odin.utils.skyblock.LocationUtils
 import com.solidhax.odinextras.events.ClientLoadChunkEvent
@@ -22,6 +21,7 @@ import net.minecraft.world.level.chunk.LevelChunk
 object WorldScanner : Module(
     name = "Crystal Hollows Scanner",
     description = "A world scanner for a specific structures in the crystal hollows.",
+    category = Category.custom("Mining"),
 ) {
     private val grottos = mutableListOf<Triple<Pair<Int, Int>, BlockPos, Int>>()
     private val structures = mutableListOf<Pair<Structure, Triple<Int, Int, Int>>>()
