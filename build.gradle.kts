@@ -13,6 +13,7 @@ repositories {
     mavenCentral()
     maven("https://jitpack.io")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://maven.teamresourceful.com/repository/maven-public/")
 }
 
 dependencies {
@@ -33,6 +34,13 @@ dependencies {
         listOf("windows", "linux", "macos", "macos-arm64").forEach { os ->
             modImplementation("org.lwjgl:lwjgl-nanovg:$lwjglVersion:natives-$os")
         }
+    }
+
+    api("tech.thatgravyboat:skyblock-api:${property("skyblock_api_version")}") {
+        capabilities { requireCapability("tech.thatgravyboat:skyblock-api-${property("minecraft_version")}") }
+    }
+    include("tech.thatgravyboat:skyblock-api:${property("skyblock_api_version")}") {
+        capabilities { requireCapability("tech.thatgravyboat:skyblock-api-${property("minecraft_version")}-remapped") }
     }
 }
 
