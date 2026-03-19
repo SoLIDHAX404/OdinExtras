@@ -17,7 +17,6 @@ import net.minecraft.world.item.Items
 import tech.thatgravyboat.skyblockapi.api.area.mining.Commission
 import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionArea
 import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionsAPI
-import tech.thatgravyboat.skyblockapi.api.profile.PetsAPI
 
 object CommissionHelper : Module(
     name = "Commission Helper",
