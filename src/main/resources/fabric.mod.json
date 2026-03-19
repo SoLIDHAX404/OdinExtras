@@ -25,8 +25,6 @@
     "fabric-api": ">=${fabric_api_version}",
     "minecraft": "~${minecraft_version}",
     "fabric-language-kotlin": ">=${fabric_kotlin_version}",
-    "odin": "*",
-    "hypixel-mod-api": ">=${hypixel_mod_api_version}",
-    "skyblock-api": ">=${skyblock_api_version}"
+    "odin": "*"
   }
 }

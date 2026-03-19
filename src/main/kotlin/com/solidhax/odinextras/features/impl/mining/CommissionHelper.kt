@@ -12,11 +12,9 @@ import com.odtheking.odin.utils.*
 import com.odtheking.odin.utils.render.textDim
 import com.odtheking.odin.utils.skyblock.Island
 import com.odtheking.odin.utils.skyblock.LocationUtils
+import com.solidhax.odinextras.api.TabListAPI
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import tech.thatgravyboat.skyblockapi.api.area.mining.Commission
-import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionArea
-import tech.thatgravyboat.skyblockapi.api.area.mining.CommissionsAPI
 
 object CommissionHelper : Module(
     name = "Commission Helper",
@@ -41,23 +39,14 @@ object CommissionHelper : Module(
     )
 
     private val completedCommissionRegex = Regex("""(.+?) Commission Complete! Visit the King to claim your rewards!""")
-    private val exampleCommissions: List<Commission> = listOf(
-        Commission("Lava Springs Mithril", CommissionArea.DWARVEN_MINES, 0.45f),
-        Commission("Royal Mines Titanium", CommissionArea.DWARVEN_MINES, 1.0f),
-        Commission("Goblin Slayer", CommissionArea.DWARVEN_MINES, 0.13f)
-    )
-    private var activeCommissions: List<Commission> = emptyList()
 
     private val hud by HUD(name, "Active Commissions Overlay", false) { example ->
-        activeCommissions = if(example) exampleCommissions else CommissionsAPI.commissions.filter { it.area == CommissionArea.currentArea }
+        val comms: List<String> = TabListAPI.getWidget(TabListAPI.TabWidget.COMMISSIONS)?.data ?: return@HUD 0 to 0
 
         var width = 0
-        var height = activeCommissions.size * mc.font.lineHeight
-        activeCommissions.forEachIndexed { index, commission ->
-            var commissionProgressPercentage: Double = commission.progress * 100.0
-            var commissionProgressText: String = if(commissionProgressPercentage == 100.0) "DONE" else "${commissionProgressPercentage.toFixed(1)}%"
-            var commissionStatusColor: Color = progressToColor(commissionProgressPercentage)
-            val (textWidth, textHeight) = textDim("${commission.name}: $commissionProgressText", 0, 0 + (index * mc.font.lineHeight), commissionStatusColor)
+        var height = comms.size * mc.font.lineHeight
+        comms.forEachIndexed { index, commission ->
+            val (textWidth, textHeight) = textDim(commission, 0, 0 + (index * mc.font.lineHeight), Colors.WHITE)
             width = maxOf(width, textWidth)
         }
 

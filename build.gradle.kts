@@ -13,8 +13,6 @@ repositories {
     mavenCentral()
     maven("https://jitpack.io")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
-    maven("https://maven.teamresourceful.com/repository/maven-public/")
-    maven("https://repo.hypixel.net/repository/Hypixel/")
     maven("https://api.modrinth.com/maven")
 }
 
@@ -27,8 +25,6 @@ dependencies {
 
     modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${property("devauth_version")}")
     modImplementation("com.github.odtheking:odinfabric:${property("odin_version")}")
-    modImplementation("net.hypixel:mod-api:${property("hypixel_mod_api_version")}")
-    modImplementation("maven.modrinth:hypixel-mod-api:${property("hypixel_mod_api_fabric_version")}")
 
     modImplementation("com.github.stivais:Commodore:${property("commodore_version")}")
 
@@ -38,13 +34,6 @@ dependencies {
         listOf("windows", "linux", "macos", "macos-arm64").forEach { os ->
             modImplementation("org.lwjgl:lwjgl-nanovg:$lwjglVersion:natives-$os")
         }
-    }
-
-    api("tech.thatgravyboat:skyblock-api:${property("skyblock_api_version")}") {
-        capabilities { requireCapability("tech.thatgravyboat:skyblock-api-${property("minecraft_version")}") }
-    }
-    include("tech.thatgravyboat:skyblock-api:${property("skyblock_api_version")}") {
-        capabilities { requireCapability("tech.thatgravyboat:skyblock-api-${property("minecraft_version")}-remapped") }
     }
 }
 
