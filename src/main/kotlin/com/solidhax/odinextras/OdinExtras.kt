@@ -3,6 +3,7 @@ package com.solidhax.odinextras
 import com.odtheking.odin.config.ModuleConfig
 import com.odtheking.odin.events.core.EventBus
 import com.odtheking.odin.features.ModuleManager
+import com.solidhax.odinextras.api.MiningAPI
 import com.solidhax.odinextras.api.TabListAPI
 import com.solidhax.odinextras.events.EventDispatcher
 import com.solidhax.odinextras.features.impl.floor7.DragonWaypoints
@@ -21,7 +22,7 @@ object OdinExtras : ClientModInitializer {
 //            arrayOf(protectItemCommand).forEach { commodore -> commodore.register(dispatcher) }
 //        }
 
-        listOf(this, EventDispatcher, TabListAPI).forEach { EventBus.subscribe(it) }
+        listOf(this, EventDispatcher, TabListAPI, MiningAPI).forEach { EventBus.subscribe(it) }
 
         ModuleManager.registerModules(ModuleConfig("OdinExtras.json"), RarityDisplay, ItemLore, HUD, DragonWaypoints,
             CorpseFinder, Trapper, TruncateDamage, AuctionHouseHelper, WorldScanner, CommissionHelper, FishingHelper, PreventPlacingSkyblockItems)

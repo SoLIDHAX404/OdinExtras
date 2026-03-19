@@ -12,7 +12,8 @@ import com.odtheking.odin.utils.*
 import com.odtheking.odin.utils.render.textDim
 import com.odtheking.odin.utils.skyblock.Island
 import com.odtheking.odin.utils.skyblock.LocationUtils
-import com.solidhax.odinextras.api.TabListAPI
+import com.solidhax.odinextras.api.MiningAPI
+import com.solidhax.odinextras.api.MiningAPI.Commission
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 
@@ -21,6 +22,14 @@ object CommissionHelper : Module(
     description = "Various features to help with mining commissions.",
     category = Category.custom("Mining")
 ) {
+    private val completedCommissionRegex = Regex("""(.+?) Commission Complete! Visit the King to claim your rewards!""")
+    private val exampleCommissions: List<Commission> = listOf(
+        Commission("Lava Springs Mithril", 45.0),
+        Commission("Royal Mines Titanium", 100.0),
+        Commission("Goblin Slayer", 13.0)
+    )
+    private var activeCommissions: List<Commission> = emptyList()
+
     private val highlightCompletedCommissions by BooleanSetting(
         "Highlight Commissions",
         desc = "Highlights completed commissions in the commissions GUI for quick claiming."
@@ -38,20 +47,26 @@ object CommissionHelper : Module(
         desc = "Alerts the player if he completed a commission."
     )
 
-    private val completedCommissionRegex = Regex("""(.+?) Commission Complete! Visit the King to claim your rewards!""")
+    private val activeCommissionsDisplay by BooleanSetting(
+        "Commission Display",
+        desc = "Shows a hud listing all active commissions and their progress."
+    )
 
-    private val hud by HUD(name, "Active Commissions Overlay", false) { example ->
-        val comms: List<String> = TabListAPI.getWidget(TabListAPI.TabWidget.COMMISSIONS)?.data ?: return@HUD 0 to 0
+    private val hud by HUD("Commission HUD", "Active Commissions Overlay", false) { example ->
+        if(!activeCommissionsDisplay) return@HUD 0 to 0
+        activeCommissions = if(example) exampleCommissions else MiningAPI.commissions
 
         var width = 0
-        var height = comms.size * mc.font.lineHeight
-        comms.forEachIndexed { index, commission ->
-            val (textWidth, textHeight) = textDim(commission, 0, 0 + (index * mc.font.lineHeight), Colors.WHITE)
+        var height = activeCommissions.size * mc.font.lineHeight
+        activeCommissions.forEachIndexed { index, commission ->
+            var commissionProgressText: String = if(commission.progress == 100.0) "DONE" else "${commission.progress}%"
+            var commissionStatusColor: Color = progressToColor(commission.progress)
+            val (textWidth, textHeight) = textDim("${commission.name}: $commissionProgressText", 0, 0 + (index * mc.font.lineHeight), commissionStatusColor)
             width = maxOf(width, textWidth)
         }
 
         width to height
-    }
+    }.withDependency { activeCommissionsDisplay }
 
     init {
         on<GuiEvent.DrawSlot> {
