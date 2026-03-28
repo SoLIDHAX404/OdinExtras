@@ -29,7 +29,7 @@ object RarityDisplay : Module(
     private val itemBackgroundOpacity by NumberSetting("Opacity", 100f, 0f, 100f, desc = "The opacity of the background.")
 
     init {
-        on<GuiEvent.DrawSlot> {
+        on<GuiEvent.RenderSlot> {
             if(!enabled) return@on
 
             val itemInSlot = slot.item

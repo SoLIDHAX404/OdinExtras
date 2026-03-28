@@ -4,8 +4,8 @@ import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
 import com.odtheking.odin.events.RenderEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
-import com.odtheking.odin.features.impl.floor7.WitherDragonState
-import com.odtheking.odin.features.impl.floor7.WitherDragons
+import com.odtheking.odin.features.impl.boss.WitherDragonState
+import com.odtheking.odin.features.impl.boss.WitherDragons
 import com.odtheking.odin.utils.Color
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.render.drawBeaconBeam

@@ -43,7 +43,7 @@ object AuctionHouseHelper : Module(
             guiGraphics.pose().popMatrix()
         }
 
-        on<GuiEvent.DrawSlot> {
+        on<GuiEvent.RenderSlot> {
             if (!enabled || screen.title.string != "Manage Auctions" || slot.item == null) return@on
 
             val slotIndex = slot.index
@@ -61,10 +61,6 @@ object AuctionHouseHelper : Module(
                 items[slotIndex] = price
                 break
             }
-        }
-
-        on<GuiEvent.Open> {
-            items.clear()
         }
     }
 

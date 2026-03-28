@@ -8,7 +8,10 @@ import com.odtheking.odin.events.GuiEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Category
 import com.odtheking.odin.features.Module
-import com.odtheking.odin.utils.*
+import com.odtheking.odin.utils.Color
+import com.odtheking.odin.utils.Colors
+import com.odtheking.odin.utils.alert
+import com.odtheking.odin.utils.loreString
 import com.odtheking.odin.utils.render.textDim
 import com.odtheking.odin.utils.skyblock.Island
 import com.odtheking.odin.utils.skyblock.LocationUtils
@@ -69,7 +72,7 @@ object CommissionHelper : Module(
     }.withDependency { activeCommissionsDisplay }
 
     init {
-        on<GuiEvent.DrawSlot> {
+        on<GuiEvent.RenderSlot> {
             if(!enabled || !highlightCompletedCommissions) return@on
 
             if(!LocationUtils.isInSkyblock) return@on
