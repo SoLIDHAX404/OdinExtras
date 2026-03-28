@@ -6,7 +6,7 @@ import com.odtheking.odin.features.ModuleManager
 import com.solidhax.odinextras.api.MiningAPI
 import com.solidhax.odinextras.api.TabListAPI
 import com.solidhax.odinextras.events.EventDispatcher
-import com.solidhax.odinextras.features.impl.floor7.DragonWaypoints
+import com.solidhax.odinextras.features.impl.boss.DragonWaypoints
 import com.solidhax.odinextras.features.impl.mining.CommissionHelper
 import com.solidhax.odinextras.features.impl.mining.CorpseFinder
 import com.solidhax.odinextras.features.impl.mining.worldscanner.WorldScanner

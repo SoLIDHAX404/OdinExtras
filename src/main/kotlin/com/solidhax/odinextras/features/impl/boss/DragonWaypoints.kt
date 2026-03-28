@@ -1,4 +1,4 @@
-package com.solidhax.odinextras.features.impl.floor7
+package com.solidhax.odinextras.features.impl.boss
 
 import com.odtheking.odin.clickgui.settings.impl.BooleanSetting
 import com.odtheking.odin.events.RenderEvent
