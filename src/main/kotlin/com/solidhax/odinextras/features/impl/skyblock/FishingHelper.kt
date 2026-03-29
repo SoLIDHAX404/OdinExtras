@@ -28,8 +28,9 @@ object FishingHelper : Module(
             if(type != EntityType.FISHING_BOBBER) return@onReceive
 
             schedule(1) {
-                var entity: Projectile = mc.level?.getEntity(id) as Projectile
-                if(entity.owner != mc.player) return@schedule
+                val entity = mc.level?.getEntity(id) ?: return@schedule
+                val projectile = entity as? Projectile ?: return@schedule
+                if(projectile.owner != mc.player) return@schedule
 
                 fishingHookEntity = entity
             }
@@ -37,8 +38,8 @@ object FishingHelper : Module(
 
         onReceive<ClientboundRemoveEntitiesPacket> {
             if(!enabled) return@onReceive
-            if(fishingHookEntity == null) return@onReceive
-            if(!entityIds.contains(fishingHookEntity!!.id)) return@onReceive
+            val hook = fishingHookEntity ?: return@onReceive
+            if(!entityIds.contains(hook.id)) return@onReceive
 
             fishingHookEntity = null
             fishingHookLifetimeTicks = 0
@@ -53,11 +54,11 @@ object FishingHelper : Module(
 
         on<RenderEvent.Extract> {
             if(!enabled || !showFishingHookLifetime) return@on
-            if(fishingHookEntity == null) return@on
+            val hook = fishingHookEntity ?: return@on
 
             val fishingHookLifetimeSeconds: Double = fishingHookLifetimeTicks / 20.0
             val formattedTime = String.format("%.2f", fishingHookLifetimeSeconds)
-            drawText("§6${formattedTime}s", fishingHookEntity!!.position(), 1f, false)
+            drawText("§6${formattedTime}s", hook.position(), 1f, false)
         }
     }
 }

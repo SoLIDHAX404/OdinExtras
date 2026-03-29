@@ -7,7 +7,13 @@ import net.minecraft.client.multiplayer.PlayerInfo
 import net.minecraft.world.level.GameType
 import java.util.regex.Pattern
 
-// Heavily inspired by SkyblockAPI
+/*
+ * Original source:
+ * https://github.com/SkyblockAPI/SkyblockAPI/tree/4.0
+ *
+ * This file is based on third-party code and has been modified.
+ * Changes by: SoLID_HAX
+ */
 object TabListAPI {
 
     val tabListComparator = compareBy<PlayerInfo>(
@@ -104,13 +110,15 @@ object TabListAPI {
     }
 
     private fun parseTabList() {
-        val players = mc.connection?.listedOnlinePlayers?.sortedWith(tabListComparator) ?: return
+        val connection = mc.connection ?: return
+        val players = connection.listedOnlinePlayers.toList().sortedWith(tabListComparator)
 
         var tabLines = players.mapNotNull { it.tabListDisplayName?.string }.filter { it.isNotBlank() }
         tabLines = tabLines.filter { !infoHeaderRegex.matcher(it).find() }
 
         val widgetLines = mutableMapOf<TabWidget, WidgetContent>()
         var currentWidget: TabWidget? = null
+        var currentHeader = ""
         var currentDataLines = mutableListOf<String>()
 
         for (line in tabLines) {
@@ -119,11 +127,12 @@ object TabListAPI {
             if (widget != null) {
                 if (currentWidget != null) {
                     widgetLines[currentWidget] = WidgetContent(
-                        header = tabLines[tabLines.indexOf(line) - currentDataLines.size - 1],
+                        header = currentHeader,
                         data = currentDataLines.toList()
                     )
                 }
                 currentWidget = widget
+                currentHeader = line
                 currentDataLines = mutableListOf()
                 widgetLines.getOrPut(widget) { WidgetContent(header = line) }
             } else if (currentWidget != null && (line.startsWith(" ") || !couldBeUnknownWidgetStart(currentWidget, line))) {
@@ -133,7 +142,7 @@ object TabListAPI {
 
         if (currentWidget != null && currentDataLines.isNotEmpty()) {
             widgetLines[currentWidget] = WidgetContent(
-                header = widgetLines[currentWidget]?.header ?: "",
+                header = currentHeader,
                 data = currentDataLines.toList()
             )
         }
