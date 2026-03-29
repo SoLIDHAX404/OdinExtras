@@ -18,6 +18,13 @@ import net.minecraft.core.BlockPos
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.chunk.LevelChunk
 
+/*
+ * Original source:
+ * https://github.com/skies-starred/Nebulune/tree/master
+ *
+ * This file is based on third-party code and has not been written by me.
+ */
+
 object WorldScanner : Module(
     name = "Crystal Hollows Scanner",
     description = "A world scanner for a specific structures in the crystal hollows.",

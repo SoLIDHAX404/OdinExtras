@@ -3,6 +3,12 @@ package com.solidhax.odinextras.features.impl.mining.worldscanner
 import com.google.common.base.Predicate
 import net.minecraft.core.BlockPos
 
+/*
+ * Original source:
+ * https://github.com/skies-starred/Nebulune/tree/master
+ *
+ * This file is based on third-party code and has not been written by me.
+ */
 enum class CrystalHollowsQuarter(private val predicate: Predicate<in BlockPos>) {
     NUCLEUS(Predicate { blockPos ->
         blockPos.x in 449..576 &&

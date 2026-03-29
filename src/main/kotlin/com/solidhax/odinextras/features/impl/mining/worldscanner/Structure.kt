@@ -6,6 +6,13 @@ import net.minecraft.world.level.block.SlabBlock
 import net.minecraft.world.level.block.state.properties.EnumProperty
 import net.minecraft.world.level.block.state.properties.SlabType
 
+/*
+ * Original source:
+ * https://github.com/skies-starred/Nebulune/tree/master
+ *
+ * This file is based on third-party code and has not been written by me.
+ */
+
 enum class Structure(
     val blocks: MutableList<Triple<Block?, EnumProperty<*>?, Comparable<*>?>>,
     val structureType: StructureType,
